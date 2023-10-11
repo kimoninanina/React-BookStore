@@ -1,8 +1,10 @@
+import { NavLink } from "react-router-dom";
+
 export const Navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark main-color py-3">
       <div className="container-fluid">
-        <span className="navbar-brand">hadh</span>
+        <span className="navbar-brand">Nina's BookStore</span>
         <button
           className="navbar-toggler"
           type="button"
@@ -17,15 +19,10 @@ export const Navbar = () => {
         <div className="collapse navbar-collapse" id="navbarNavDrop">
           <ul className="navbar-nav">
             <li className="nav-item">
-              {/* eslint-disable jsx-a11y/anchor-is-valid */}
-              <a className="nav-link active" href="#">
-                Home
-              </a>
+              <NavLink className='nav-link' to='/home'>Home</NavLink>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">
-                Search Books
-              </a>
+              <NavLink className='nav-link' to='/search'>Search Books</NavLink>
             </li>
           </ul>
           <ul className="navbar-nav ms-auto">
