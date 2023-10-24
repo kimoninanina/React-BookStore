@@ -35,6 +35,9 @@ export const BookCheckoutPage = () => {
   //path parameter out of the URL
   const bookId = window.location.pathname.split("/")[2];
 
+  // Payment
+  const [displayError, setDisplayError] = useState(false);
+
   useEffect(() => {
     const fetchBook = async () => {
       const baseUrl: string = `${process.env.REACT_APP_API}/books/${bookId}`;
@@ -224,38 +227,47 @@ export const BookCheckoutPage = () => {
     };
     const checkoutResponse = await fetch(url, requestOptions);
     if (!checkoutResponse.ok) {
+      setDisplayError(true);
       throw new Error("Something went wrong!");
     }
+    setDisplayError(false);
     setIsCheckedOut(true);
   }
   async function submitReview(starInput: number, reviewDescription: string) {
     let bookId: number = 0;
     if (book?.id) {
-        bookId = book.id;
+      bookId = book.id;
     }
 
-    const reviewRequestModel = new ReviewRequestModel(starInput, bookId, reviewDescription);
+    const reviewRequestModel = new ReviewRequestModel(
+      starInput,
+      bookId,
+      reviewDescription
+    );
     const url = `${process.env.REACT_APP_API}/reviews/secure`;
     const requestOptions = {
-        method: 'POST',
-        headers: {
-            Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(reviewRequestModel)
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${authState?.accessToken?.accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(reviewRequestModel),
     };
     const returnResponse = await fetch(url, requestOptions);
     if (!returnResponse.ok) {
-        throw new Error('Something went wrong!');
+      throw new Error("Something went wrong!");
     }
     setIsReviewLeft(true);
-}
-
-
+  }
 
   return (
     <div>
       <div className="container d-none d-lg-block">
+        {displayError && (
+          <div className="alert alert-danger mt-3" role="alert">
+            Please pay outstanding fees and/or return late book(s).
+          </div>
+        )}
         <div className="row mt-5">
           <div className="col-sm-2 col-md-2">
             {book?.img ? (
@@ -292,6 +304,11 @@ export const BookCheckoutPage = () => {
         <LatestReviews reviews={reviews} bookId={book?.id} mobile={false} />
       </div>
       <div className="container d-lg-none mt-5">
+        {displayError && (
+          <div className="alert alert-danger mt-3" role="alert">
+            Please pay outstanding fees and/or return late book(s).
+          </div>
+        )}
         <div className="d-flex justify-content-center alighn-items-center">
           {book?.img ? (
             <img src={book?.img} width="226" height="349" alt="Book" />
