@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
 import ReviewModel from '../../../models/ReviewModel';
-// import { Pagination } from '../../Utils/Pagination';
-// import { Review } from '../../Utils/Review';
-import { SpinnerLoading } from '../../Utils/SpinnerLoading';
-import { Review } from '../../Utils/Review';
 import { Pagination } from '../../Utils/Pagination';
+import { Review } from '../../Utils/Review';
+import { SpinnerLoading } from '../../Utils/SpinnerLoading';
+
 
 export const ReviewListPage = () => {
 
@@ -24,7 +23,7 @@ export const ReviewListPage = () => {
     useEffect(() => {
         const fetchBookReviewsData = async () => {
 
-            const reviewUrl: string = `http://localhost:8080/api/reviews/search/findByBookId?bookId=${bookId}&page=${currentPage - 1}&size=${reviewsPerPage}`;
+            const reviewUrl: string = `${process.env.REACT_APP_API}/reviews/search/findByBookId?bookId=${bookId}&page=${currentPage - 1}&size=${reviewsPerPage}`;
 
             const responseReviews = await fetch(reviewUrl);
 
