@@ -73,7 +73,7 @@ export const PaymentPage = () => {
                         email: authState?.accessToken?.claims.sub
                     }
                 }
-            }, {handleActions: false}
+            }, {handleActions: false} // handle complete
         ).then(async function (result: any) {
             if (result.error) {
                 setSubmitDisabled(false)

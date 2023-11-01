@@ -21,14 +21,14 @@ export const Navbar = () => {
           className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
-          data-bs-target="#navbarSupportedContent"
-          aria-controls="navbarSupportedContent"
+          data-bs-target="#navbarNavDropdown"
+          aria-controls="navbarNavDropdown"
           aria-expanded="false"
-          aria-label="Toggle navigation"
+          aria-label="Toggle Navigation"
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNavDrop">
+        <div className="collapse navbar-collapse" id="navbarNavDropdown">
           <ul className="navbar-nav">
             <li className="nav-item">
               <NavLink className="nav-link" to="/home">
@@ -40,21 +40,25 @@ export const Navbar = () => {
                 Search Books
               </NavLink>
             </li>
-            {authState.isAuthenticated && 
+            {authState.isAuthenticated && (
               <li className="nav-item">
                 <NavLink className="nav-link" to="/shelf">
                   Shelf
                 </NavLink>
               </li>
-            }
+            )}
             {authState.isAuthenticated &&
+              authState.accessToken?.claims?.userType === "admin" && (
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="/admin">
+                    Admin
+                  </NavLink>
+                </li>
+              )}
+
+               {authState.isAuthenticated &&
               <li className='nav-item'>
                 <NavLink className='nav-link' to='/fees'>Pay fees</NavLink>
-              </li>
-            }
-            {authState.isAuthenticated && authState.accessToken?.claims?.userType === 'admin' &&
-              <li className='nav-item'>
-                <NavLink className='nav-link' to='/admin'>Admin</NavLink>
               </li>
             }
           </ul>
