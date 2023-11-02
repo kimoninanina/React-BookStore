@@ -23,8 +23,8 @@ Discover:
 JCB:
 3566002020360505
 
--       Created new React projects using React CLI tool
--      Developed custom React components and services
+- [ ]  Created new React projects using React CLI tool
+- [ ]   Developed custom React components and services
 - [ ]     Injected React services into custom React services
 - [ ]     Performed REST client calls between React and Spring Boot
 - [ ]     Added custom searching for data in React application
