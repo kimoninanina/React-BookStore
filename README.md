@@ -23,6 +23,8 @@ Discover:
 JCB:
 3566002020360505
 
+Using OKTA as User Authentication 
+https://login.okta.com/ 
 
 ### React
 - [ ]     Created new React projects using React CLI tool
