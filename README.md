@@ -23,3 +23,14 @@ Discover:
 JCB:
 3566002020360505
 
+React
+    Created new React projects using React CLI tool
+    Developed custom React components and services
+    Injected React services into custom React services
+    Performed REST client calls between React and Spring Boot
+    Added custom searching for data in React application
+    Applied React pagination to display views of REST API data
+    Developed React components to populate drop-down lists
+    Performed form validation with React Validation API
+    Integrated Login/Logout functionality for secure access
+    Processed credit card payments using the Stripe API
